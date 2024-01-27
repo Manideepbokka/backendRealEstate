@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: SaiManideepBokka
+      failOnError: true
+      runInTransaction: true
+      labels: create_tables
+      changes:
+        - sqlFile:
+            path: create-tables.sql
+            relativeToChangelogFile: true
