@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name = "CASE_TABLE")
+@Table(schema = "BUDDIGA_DEVELOPERS",name = "CASE_TABLE")
 @Data
 public class CaseTable1 {
 

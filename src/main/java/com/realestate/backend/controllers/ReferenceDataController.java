@@ -20,7 +20,6 @@ public class ReferenceDataController {
     @GetMapping("/projectsData")
     public ResponseEntity<List<ProjectsData>> getAllProjects(){
         List<ProjectsData> projectsData = referenceDataSer.getAllCompletedProjectsData();
-        projectsData.addAll(referenceDataSer.getAllOngoingProjectsData());
         return new ResponseEntity<>(projectsData, HttpStatus.OK);
     }
 

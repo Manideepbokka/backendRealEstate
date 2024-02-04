@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@Table(name="PROJECTS_DATA")
+@Table(schema = "BUDDIGA_DEVELOPERS",name="PROJECTS_DATA")
 @Entity
 public class ProjectsData {
 

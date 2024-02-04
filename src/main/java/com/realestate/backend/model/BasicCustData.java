@@ -10,7 +10,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name = "BASIC_CUST_DATA")
+@Table(schema = "BUDDIGA_DEVELOPERS",name = "BASIC_CUST_DATA")
 @Data
 public class BasicCustData {
 
