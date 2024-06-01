@@ -1,9 +1,7 @@
 package com.realestate.backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.realestate.backend.model.enums.ProjectStatus;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -24,7 +22,8 @@ public class ProjectsData {
     private String projectAddress;
 
     @Column(name = "PRJCT_STATUS")
-    private String projectStatus;
+    @Enumerated(EnumType.STRING)
+    private ProjectStatus projectStatus;
 
     @Column(name = "PRJCT_POSESSION")
     private String projectPossession;

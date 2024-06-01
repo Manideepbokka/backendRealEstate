@@ -1,5 +1,6 @@
 package com.realestate.backend.model;
 
+import com.realestate.backend.model.enums.CaseStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -24,7 +25,8 @@ public class CaseTable1 {
     private String query;
 
     @Column(name = "CASE_PRGRS")
-    private String caseProgress;
+    @Enumerated(EnumType.STRING)
+    private CaseStatus caseProgress;
 
     @Column(name = "CRE_TS")
     private Date createdAt;

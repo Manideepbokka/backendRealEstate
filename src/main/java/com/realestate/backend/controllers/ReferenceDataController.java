@@ -19,8 +19,15 @@ public class ReferenceDataController {
     ReferenceDataSerImpl referenceDataSer;
     @GetMapping("/projectsData")
     public ResponseEntity<List<ProjectsData>> getAllProjects(){
-        List<ProjectsData> projectsData = referenceDataSer.getAllCompletedProjectsData();
-        return new ResponseEntity<>(projectsData, HttpStatus.OK);
+        List<ProjectsData> projectsCompleted = referenceDataSer.getAllCompletedProjectsData();
+        List<ProjectsData> ongoingProj = referenceDataSer.getAllOngoingProjectsData();
+        if(!projectsCompleted.isEmpty()){
+            projectsCompleted.addAll(ongoingProj);
+        }else{
+            ongoingProj.addAll(projectsCompleted);
+        }
+        List<ProjectsData> allProjects = projectsCompleted.size() > ongoingProj.size() ? projectsCompleted : ongoingProj;
+        return new ResponseEntity<>(allProjects, HttpStatus.OK);
     }
 
 }
