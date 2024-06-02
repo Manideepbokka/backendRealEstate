@@ -1,8 +1,9 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.InjectableValues;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.realestate.backend.learnjackson.*;
-import com.realestate.backend.learnjackson.deserialize.JsonCreatorEx;
+import com.realestate.backend.learnjackson.deserialize.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -80,5 +81,66 @@ public class LearnjacksonTest {
                 .readerFor(JsonCreatorEx.class)
                 .readValue(json);
         System.out.println(bean.name);
+    }
+
+    @Test
+    void test_whether_JacksonInject_works() throws JsonProcessingException {
+        String json="{\"name\":\"My bean\"}";
+        InjectableValues ib=new InjectableValues.Std().addValue(int.class,1);
+
+        JacksonInjectEx injectEx=new ObjectMapper()
+                .reader(ib)
+                .forType(JacksonInjectEx.class)
+                .readValue(json);
+        System.out.println(new ObjectMapper().writeValueAsString(injectEx));
+
+    }
+
+    @Test
+    public void whenDeserializingUsingJsonAnySetter_thenCorrect()
+            throws IOException {
+        String json
+                = "{\"name\":\"My bean\",\"attr2\":\"val2\",\"attr1\":\"val1\"}";
+
+        JsonAnySetterEx bean = new ObjectMapper()
+                .readerFor(JsonAnySetterEx.class)
+                .readValue(json);
+        System.out.println(new ObjectMapper().writeValueAsString(bean));
+    }
+
+    @Test
+    public void whenDeserializingUsingJsonSetter_thenCorrect()
+            throws IOException {
+
+        String json = "{\"id\":1,\"name\":\"My bean\"}";
+
+        JsonSetterEx bean = new ObjectMapper()
+                .readerFor(JsonSetterEx.class)
+                .readValue(json);
+        System.out.println(new ObjectMapper().writeValueAsString(bean));
+    }
+
+    @Test
+    public void whenDeserializingUsingJsonDeserialize_thenCorrect()
+            throws IOException {
+
+        String json ="{\"name\":\"party\",\"eventDate\":\"20-12-2014 02:30:00\"}";
+
+        SimpleDateFormat df
+                = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        JsonDeserializeEx event = new ObjectMapper()
+                .readerFor(JsonDeserializeEx.class)
+                .readValue(json);
+        System.out.println(new ObjectMapper().writeValueAsString(event));
+    }
+
+    @Test
+    void test_whether_deserializing_using_JsonAlias_works() throws JsonProcessingException {
+        //String json="{\"fName\":\"Bokka\",\"lastName\":\"Manideep\"}";
+        String json = "{\"f_name\": \"John\", \"lastName\": \"Green\"}";
+        JsonAliasEx aliasEx=new ObjectMapper()
+                .readerFor(JsonAliasEx.class)
+                .readValue(json);
+        System.out.println(new ObjectMapper().writeValueAsString(aliasEx));
     }
 }
