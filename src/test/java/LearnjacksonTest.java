@@ -254,4 +254,15 @@ public class LearnjacksonTest {
                 .writerWithView(Views.Public.class).writeValueAsString(item));
 
     }
+    @Test
+    void test_whether_json_man_back_references_works() throws JsonProcessingException {
+        JsonBackRef jbr=new JsonBackRef(1,"Manideep");
+        JsonManRef jmr=new JsonManRef(2,"Bokka",jbr);
+        jbr.userItems.add(jmr);
+
+        System.out.println(new ObjectMapper().
+                writerWithDefaultPrettyPrinter()
+                .writeValueAsString(jmr));
+
+    }
 }
