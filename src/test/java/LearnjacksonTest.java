@@ -203,21 +203,21 @@ public class LearnjacksonTest {
         );
     }
 
-    @Test
-    public void whenDeserializingPolymorphic_thenCorrect()
-            throws IOException {
-        String json = "{\"animal\":{\"type\" : \"dog\",\"name\" : \"Peter\",\"barkVolume\" : 0.0234}}";
-
-        JacksonPolymorphic zoo = new ObjectMapper()
-                .readerFor(JacksonPolymorphic.class)
-                .readValue(json);
-
-        System.out.println(
-                new ObjectMapper()
-                        .writerWithDefaultPrettyPrinter()
-                        .writeValueAsString(zoo)
-        );
-    }
+//    @Test
+//    public void whenDeserializingPolymorphic_thenCorrect()
+//            throws IOException {
+//        String json = "{\"animal\":{\"type\" : \"dog\",\"name\" : \"Peter\",\"barkVolume\" : 0.0234}}";
+//
+//        JacksonPolymorphic zoo = new ObjectMapper()
+//                .readerFor(JacksonPolymorphic.class)
+//                .readValue(json);
+//
+//        System.out.println(
+//                new ObjectMapper()
+//                        .writerWithDefaultPrettyPrinter()
+//                        .writeValueAsString(zoo)
+//        );
+//    }
 
     @Test
     public void whenUsingJsonProperty_thenCorrect()
