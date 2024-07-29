@@ -11,7 +11,7 @@ public class Java11Features {
         String str="Sai Manideep Bokka ";
         String str2="";
         System.out.println(str.repeat(2));
-        System.out.println(str2.repeat(2));
+        System.out.println(str2.repeat(2)); 
 
         //strip method
         String stripStr="\n\t  hello   \u2005";
