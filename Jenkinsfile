@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Preparation'){
+            steps{
+               git 'https://github.com/Manideepbokka/backendRealEstate.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                bat "mvn clean test"
+            }
+        }
+        stage('Package') {
+            steps {
+                bat "mvn clean package"
+            }
+        }
+        stage('Results') {
+            steps {
+                junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+            }
+        }
+        }
+}
